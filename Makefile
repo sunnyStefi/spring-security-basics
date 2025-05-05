@@ -12,4 +12,4 @@ generate-cert:
 
 
 demo:
-	curl -vu user:ADD_FROM_CONSOLE_OUTPUT  https://localhost:8080/hello
+	curl -vu user:12345  https://localhost:8080/hello
