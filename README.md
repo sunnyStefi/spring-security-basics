@@ -1,2 +1,2 @@
 # spring-security-basics 
-## implementing userDetailsService
+## overriding authentication provider
