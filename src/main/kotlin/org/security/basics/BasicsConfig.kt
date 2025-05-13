@@ -12,6 +12,9 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 class BasicsConfig {
 
+    /** Customization Style #1: Bean
+     *  more flexible since it allows to inject it in different part of the application
+     * */
     @Bean
     fun userDetails(): UserDetailsService {
         val user = User.withUsername("user")
@@ -26,8 +29,8 @@ class BasicsConfig {
         http.httpBasic(Customizer.withDefaults())
         http.authorizeHttpRequests { auth -> auth.anyRequest().authenticated() }
 
-        /* instead of creating a bean - which lets inject values,
-        * we can also add the user to http object directly
+        /* Customization Style #2:
+        *  add the user to http object directly
         *
         val user = User.withUsername("user")
             .password("{noop}12345")
