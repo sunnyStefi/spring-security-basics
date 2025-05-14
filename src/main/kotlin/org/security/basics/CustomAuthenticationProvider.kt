@@ -9,14 +9,13 @@ import org.springframework.stereotype.Component
 
 @Component
 class CustomAuthenticationProvider: AuthenticationProvider {
-    override fun authenticate(authentication: Authentication): Authentication {
 
+    override fun authenticate(authentication: Authentication): Authentication {
         val username = authentication.name
         val password = authentication.credentials.toString()
-        val authorities = listOf(SimpleGrantedAuthority("ROLE_USER"))
 
         if ("user" == username && "12345" == password) {
-            return UsernamePasswordAuthenticationToken(username, password, authorities)
+            return UsernamePasswordAuthenticationToken(username, password, null)
         } else throw AuthenticationCredentialsNotFoundException("")
     }
 
