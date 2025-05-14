@@ -10,19 +10,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
-class BasicsConfig {
-
-    /** Customization Style #1: Bean
-     *  more flexible since it allows to inject it in different part of the application
-     * */
-    @Bean
-    fun userDetails(): UserDetailsService {
-        val user = User.withUsername("user")
-            .password("{noop}12345")
-            .roles("USER")
-            .build()
-        return InMemoryUserDetailsManager(user)
-    }
+class AuthorizationConfig {
 
     @Bean
     fun configure(http: HttpSecurity): SecurityFilterChain {
