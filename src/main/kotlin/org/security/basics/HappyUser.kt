@@ -3,10 +3,12 @@ package org.security.basics
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.stereotype.Component
 
+@Component
 class HappyUser : UserDetails {
-    private lateinit var username: String
-    private lateinit var password: String
+    private var username: String = "happy"
+    private var password: String = "password"
 
     //why not @Override
     override fun getUsername(): String {
