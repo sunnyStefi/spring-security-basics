@@ -8,14 +8,11 @@ import org.springframework.security.web.SecurityFilterChain
 
 
 @Configuration
-class BasicsConfig(authenticationProvider: CustomAuthenticationProvider) {
-
-    private val customAuthenticationProvider: CustomAuthenticationProvider = authenticationProvider
+class BasicsConfig() {
 
     @Bean
     fun configure(http: HttpSecurity): SecurityFilterChain {
-        http.authenticationProvider(customAuthenticationProvider)
-            .authorizeHttpRequests { authorize -> authorize.anyRequest().authenticated() }
+        http.authorizeHttpRequests { authorize -> authorize.anyRequest().authenticated() }
             .httpBasic(Customizer.withDefaults())
         return http.build()
     }
