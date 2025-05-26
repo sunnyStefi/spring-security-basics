@@ -21,6 +21,11 @@ class UserConfig {
             .password("{noop}12345")
             .roles("USER")
             .build()
-        return InMemoryUserDetailsManager(user)
+
+        val admin = User.withUsername("admin")
+            .password("{noop}12345")
+            .roles("ADMIN")
+            .build()
+        return InMemoryUserDetailsManager(user, admin)
     }
 }
