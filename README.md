@@ -26,7 +26,6 @@ In this module (`basics/03-user-details-service` branch), we focus on **customiz
   * **Style 1**: Defining `UserDetailsService` as a Bean
   * **Style 2**: Through `SecurityFilterChain`
 
----
 
 ## 🏗️ Code Overview
 
@@ -51,14 +50,12 @@ fun userDetails(): UserDetailsService {
 * The `User` class is an implementation of `UserDetails`
 * Users are stored in a `Map` internally for quick lookup
 
----
 
 ## ⚠️ Best Practices
 
 * Stick to **one customization style** per project/module for clarity and maintainability
 * Avoid `{noop}` in production environments — use a proper `PasswordEncoder`
 
----
 
 
 ## 🚀 Next Steps
