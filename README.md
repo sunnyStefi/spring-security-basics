@@ -39,11 +39,11 @@ server.ssl.key-store-type=PKCS12
     rm cert.conf
 ```
 
-## ⚠️ Best Practices`
+## ⚠️ Best Practices
 
-✅ Robust HTTPS enforcement = Infrastructure + Application
-✅ Always test security headers and TLS
-✅ Use real CA-signed certs for production, self-signed only for dev
+* ✅ Robust HTTPS enforcement = Infrastructure + Application
+* ✅ Always test security headers and TLS
+* ✅ Use real CA-signed certs for production, self-signed only for dev
 
 ## 🚀 Next Steps
 
