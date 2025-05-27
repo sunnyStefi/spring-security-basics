@@ -3,7 +3,8 @@
 Welcome to the **Spring Security Basics** series! 
 In this branch, we’ll override some of the Spring Security default configurations to better understand and control the authentication process.
 
-## 🎥 Watch the Video Tutorial [Basic 03 | HTTPS, UserDetailsService]()
+## 🎥 Youtube Video Tutorial
+[Basic 03 | HTTPS, UserDetailsService]() by [Spring Security with Stefania](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) 🔔
 
 ## 🛠️ Setup
 
