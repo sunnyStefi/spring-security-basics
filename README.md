@@ -3,7 +3,8 @@
 Welcome to the **Spring Security Basics** series!
 In this module (`basics/02-https-curl` branch) we'll explore HTTPs, openssl by installing a self-signed certificate, and using curl to test a https request.
 
-## 🎥 Watch the Video Tutorial [Basic 02 | HTTPS]()
+## 🎥 Video Tutorial 
+[Basic 02 | HTTPS]()
 
 ## 🛠️ Setup
 
