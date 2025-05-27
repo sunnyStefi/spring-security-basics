@@ -1,5 +1,5 @@
 [write this as readme for a github project. Fill in text in the following section:
-# 🔐 Spring Security Basics 02 | ..title here
+# 🔐 Spring Security Basics 02 | HTTPS
 
 Welcome to the **Spring Security Basics** series!
 In this branch,
