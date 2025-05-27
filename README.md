@@ -2,7 +2,7 @@
 # 🔐 Spring Security Basics 02 | HTTPS
 
 Welcome to the **Spring Security Basics** series!
-In this branch,
+In this module (`basics/02-https-curl` branch) we'll explore HTTPs, openssl by installing a self-signed certificate, and using curl to test a https request.
 
 ## 🎥 Watch the Video Tutorial [Basic 02 | HTTPS]()
 
@@ -13,10 +13,6 @@ This content lives in a separate branch for modular learning:
 ```bash
 git checkout basics/02-https-curl
 ```
-
-## 🧩 Key concepts
-
-In this module (`basics/02-https-curl` branch) we'll explore HTTPs, openssl by installing a self-signed certificate, and using curl to test a https request.
 
 ## 🏗️ Code Overview
 
