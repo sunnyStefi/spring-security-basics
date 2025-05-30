@@ -1,37 +1,50 @@
-# spring-security-basics 
-## https request with default user-information
+# 🔐 Spring Security Basics 04 | `Authentication Provider`
 
-### Spring Security Authentication Flow
-<Add schema>
+Welcome to the **Spring Security Basics** series!
+In this branch, we’ll override some of the Spring Security default configurations to better understand and control the authentication process.
 
-Every request passes through an Authentication Filter.
-The Authentication Provider implements the authentication logic 
-delegating to UserDetailsService, which finds the user (GET) 
-and to PasswordEncoder, which encodes and verify the password.
+## 🎥 Youtube Video Tutorial
+in progress...
 
-The Authentication Filter saves the final authenticated data
-in the Security context.
+## 🛠️ Setup
 
-## 1. UserDetailsService
-Autoconfigured bean. Retrieves the User (GET). 
-Default implementation: default credentials are stored in memory when
-app is loaded.
+This content lives in a separate branch for modular learning:
 
-## 2. PasswordEncoder
-Autoconfigured bean. Encodes and verifies the password with an existing encoding.
-Mandatory. Simplest implementation is no encoding.
-Lives together with UserDetailsService.
-
-### Enable HTTPS
-Generate a self-signed certificate with Open SSL
-Transform it to pk12
-<makefile reference>
-Enable https at the application level in the properties file
-Add it to your keystore (mac) and trust
 ```bash
-make demo
+git checkout basics/04-authentication-provider
 ```
 
-### Resources
-[L. Spilca, Spring Security in Action, 2nd Edition]()
-Chapter 2.2, Hello Spring Security 
+## 🧩 Key concepts
+
+In this module (`basics/04-authentication-provider` branch), we focus on **customizing the `AuthenticationProvider`** interface. 
+
+
+
+## 🏗️ Code Overview
+
+### 🧪 Create users with `CustomAuthenticationProvider`
+
+```kotlin
+@Bean
+override fun authenticate(authentication: Authentication): Authentication {
+  if ("user" == authentication.name && "12345" == authentication.credentials) {
+    return UsernamePasswordAuthenticationToken(username, password, null)
+  } else throw AuthenticationCredentialsNotFoundException("")
+}
+
+override fun supports(authentication: Class<*>): Boolean {
+  return UsernamePasswordAuthenticationToken::class.java.isAssignableFrom(authentication)
+}
+}
+```
+
+
+## ⚠️ Best Practices
+
+## 🚀 Next Steps
+
+In the next branch, we’ll continue building up our authentication configuration and learn how to read our users from a database and login with those credentials 🤯
+
+Stay tuned!
+
+---
