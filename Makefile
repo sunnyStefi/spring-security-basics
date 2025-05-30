@@ -10,6 +10,5 @@ generate-cert:
           -certfile localhost.crt -passout pass:123 && \
     rm cert.conf
 
-
 demo:
-	curl -vu user:12345  https://localhost:8080/hello
+	curl -vu user:password  https://localhost:8080/hello
