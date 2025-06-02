@@ -12,4 +12,4 @@ generate-cert:
 
 
 demo:
-	curl -vu user:12345  https://localhost:8080/hello
+	curl -vu john:12345  https://localhost:8080/hello
