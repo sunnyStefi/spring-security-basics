@@ -8,9 +8,15 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
+import java.nio.charset.StandardCharsets
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+import java.util.*
 import javax.sql.DataSource
+
 
 @Configuration
 class UserConfig {
@@ -51,9 +57,8 @@ class UserConfig {
     }
 
     @Bean
-    fun encoder() = object : PasswordEncoder {
-        override fun encode(password: CharSequence) = password.toString()
-        override fun matches(password: CharSequence, encodedPassword: String) = password.toString() == encodedPassword
+    fun encoder() : PasswordEncoder {
+        return BCryptPasswordEncoder(11);
     }
 
 }
