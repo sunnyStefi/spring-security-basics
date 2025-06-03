@@ -1,5 +1,6 @@
 package org.security.basics
 
+import org.security.basics.entity.HappyUserEntity
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
@@ -8,10 +9,10 @@ class HappyUser(
     private val happyUser: HappyUserEntity
 ) : UserDetails {
 
-    override fun getUsername(): String = happyUser.username
+    override fun getUsername(): String = happyUser.username ?: ""
 
     override fun getPassword(): String = happyUser.password
 
     override fun getAuthorities(): Collection<GrantedAuthority> =
-        listOf(SimpleGrantedAuthority(happyUser.authority))
+        listOf(SimpleGrantedAuthority(happyUser.authorities.first().authority))
 }
