@@ -12,7 +12,7 @@ In this branch, we build a simple app that saves users in an H2 in-memory databa
 This content lives in a separate branch for modular learning:
 
 ```bash
-git checkout branch05/
+git checkout basics/05-user-details
 ```
 
 ## 🧩 Key concepts
