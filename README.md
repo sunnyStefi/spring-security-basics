@@ -1,50 +1,65 @@
-# 🔐 Spring Security Basics 04 | `Authentication Provider`
+# 🔐 Spring Security Basics | AuthenticationProvider Implementation
 
 Welcome to the **Spring Security Basics** series!
-In this branch, we’ll override some of the Spring Security default configurations to better understand and control the authentication process.
+In this branch, we explore how to build and register a custom `AuthenticationProvider` in Spring Security.
 
 ## 🎥 Youtube Video Tutorial
-in progress...
+
+[Basic 04 | Custom AuthenticationProvider](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) by [Spring Security with Stefania](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) 🔔
 
 ## 🛠️ Setup
 
 This content lives in a separate branch for modular learning:
 
 ```bash
-git checkout basics/04-authentication-provider
+git checkout branch-04
 ```
 
 ## 🧩 Key concepts
 
-In this module (`basics/04-authentication-provider` branch), we focus on **customizing the `AuthenticationProvider`** interface. 
-
-
+In this module (`basics/04-authentication-provider` branch), we cover how `AuthenticationProvider` encapsulates authentication logic and registering it in Spring Security’s filter chain
 
 ## 🏗️ Code Overview
 
-### 🧪 Create users with `CustomAuthenticationProvider`
+### Custom AuthenticationProvider (Kotlin)
 
 ```kotlin
-@Bean
-override fun authenticate(authentication: Authentication): Authentication {
-  if ("user" == authentication.name && "12345" == authentication.credentials) {
-    return UsernamePasswordAuthenticationToken(username, password, null)
-  } else throw AuthenticationCredentialsNotFoundException("")
-}
+class CustomAuthenticationProvider(
+    private val userDetailsService: UserDetailsService,
+    private val passwordEncoder: PasswordEncoder
+) : AuthenticationProvider {
 
-override fun supports(authentication: Class<*>): Boolean {
-  return UsernamePasswordAuthenticationToken::class.java.isAssignableFrom(authentication)
-}
+    override fun authenticate(authentication: Authentication): Authentication {
+        val username = authentication.name
+        val password = authentication.credentials.toString()
+
+        val userDetails = userDetailsService.loadUserByUsername(username)
+        if (!passwordEncoder.matches(password, userDetails.password)) {
+            throw AuthenticationCredentialsNotFoundException("Invalid credentials")
+        }
+
+        return UsernamePasswordAuthenticationToken(
+            userDetails, password, userDetails.authorities
+        )
+    }
+
+    override fun supports(authentication: Class<*>): Boolean {
+        return UsernamePasswordAuthenticationToken::class.java.isAssignableFrom(authentication)
+    }
 }
 ```
 
+### Registering in Security Configuration
 
-## ⚠️ Best Practices
+```kotlin
+@Bean
+fun securityFilterChain(http: HttpSecurity, customAuthProvider: CustomAuthenticationProvider): SecurityFilterChain {
+    http
+        .authenticationProvider(customAuthProvider)
+    return http.build()
+}
+```
 
 ## 🚀 Next Steps
 
-In the next branch, we’ll continue building up our authentication configuration and learn how to read our users from a database and login with those credentials 🤯
-
-Stay tuned!
-
----
+In the next branch (`branch-05`), we will connect authentication to a real in-memory H2 database 🤯, persisting users with JPA and managing them with a custom `UserDetailsService`.
