@@ -12,7 +12,7 @@ In this branch, we explore how to build and register a custom `AuthenticationPro
 This content lives in a separate branch for modular learning:
 
 ```bash
-git checkout branch-04
+git checkout basics/04-authentication-provider
 ```
 
 ## 🧩 Key concepts
