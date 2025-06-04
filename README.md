@@ -21,7 +21,7 @@ In this module (`basics/04-authentication-provider` branch), we cover how `Authe
 
 ## 🏗️ Code Overview
 
-### Custom AuthenticationProvider (Kotlin)
+### Custom AuthenticationProvider
 
 ```kotlin
 class CustomAuthenticationProvider(
