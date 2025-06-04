@@ -62,4 +62,4 @@ fun securityFilterChain(http: HttpSecurity, customAuthProvider: CustomAuthentica
 
 ## 🚀 Next Steps
 
-In the next branch (`branch-05`), we will connect authentication to a real in-memory H2 database 🤯, persisting users with JPA and managing them with a custom `UserDetailsService`.
+In the next branch, we will connect authentication to a real in-memory H2 database 🤯, persisting users with JPA and managing them with a custom `UserDetailsService`.
