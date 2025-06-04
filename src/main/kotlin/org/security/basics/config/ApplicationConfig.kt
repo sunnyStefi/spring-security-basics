@@ -10,7 +10,9 @@ class ApplicationConfig {
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
-        http.formLogin{form ->  form
+        http
+            .authorizeHttpRequests { authorize -> authorize.anyRequest().authenticated() }
+            .formLogin{ form ->  form
                 .defaultSuccessUrl("https://localhost:8080/hello", true) }
         return http.build()
     }
