@@ -20,7 +20,7 @@ You can follow the development of each branch on a dedicated [YouTube video](htt
 ## 🤝 Stay Connected
 📆 Each **Monday** I'll release a new video that dives into one different Spring Security **feature**
 
-🎥 [Join me on youtube](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) on this exciting journey or feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/sunny-stefi/) — I'd love 🙏🏻 to hear from you!
+🎥 [Join me on YouTube](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) on this exciting journey or feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/sunny-stefi/) — I'd love 🙏🏻 to hear from you!
 
  
 Happy securing! 🔐
