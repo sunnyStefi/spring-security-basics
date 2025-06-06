@@ -4,7 +4,7 @@ Heii and welcome! ✨ I am so happy that you're here 🎉
 
 👮🏻 In this repo you'll find everything about Spring Security Basics features. 
 
-You can follow the development of each branch on a dedicated [YouTube video](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) and builds on top of the previous one. 
+You can follow the development of each branch on a dedicated [YouTube video](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) which builds on top of the previous one. 
 
 ## ☑️ [**Spring Security Basics Playlist**](https://www.youtube.com/playlist?list=PLI1N6B5Z6ugMt6ySoR_z2M08HTb8C0iI-)
 
