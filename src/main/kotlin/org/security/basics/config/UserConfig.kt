@@ -9,12 +9,11 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.factory.PasswordEncoderFactories
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
-import java.nio.charset.StandardCharsets
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
-import java.util.*
 import javax.sql.DataSource
 
 
@@ -57,8 +56,8 @@ class UserConfig {
     }
 
     @Bean
-    fun encoder() : PasswordEncoder {
-        return BCryptPasswordEncoder(11);
+    fun encoder(): PasswordEncoder {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
     }
 
 }
