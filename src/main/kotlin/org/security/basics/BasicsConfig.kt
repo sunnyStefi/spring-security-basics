@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.web.FilterChainProxy
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter
+import org.springframework.security.web.session.DisableEncodeUrlFilter
 
 
 @Configuration
@@ -16,22 +18,10 @@ class BasicsConfig {
 
     @Bean
     fun configure(http: HttpSecurity): SecurityFilterChain {
-        http.authorizeHttpRequests { authorize -> authorize.anyRequest().authenticated() }
-            .httpBasic(Customizer.withDefaults())
+        http.addFilterAt(IsHappyRequestFilter(), BasicAuthenticationFilter::class.java)
+            .authorizeHttpRequests { auth ->
+                auth.anyRequest().authenticated()}
         return http.build()
     }
 
-    @Bean
-    fun logFilters(filterChainProxy: FilterChainProxy): CommandLineRunner {
-        return CommandLineRunner {
-            println("=== Spring Security Filter Chain ===")
-            filterChainProxy.filterChains.forEach { chain ->
-                println("Pattern: $chain")
-                chain.filters.forEach { filter ->
-                    println(" - ${filter::class.qualifiedName}")
-                }
-            }
-            println("=====================================")
-        }
-    }
 }
