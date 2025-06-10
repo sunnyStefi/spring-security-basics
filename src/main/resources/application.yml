@@ -13,6 +13,9 @@ spring:
             ddl-auto: update
         show-sql: true
 
+    security:
+      strategy: MODE_INHERITABLETHREADLOCAL
+
 logging:
     level:
         org:

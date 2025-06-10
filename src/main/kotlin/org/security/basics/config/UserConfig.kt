@@ -7,6 +7,7 @@ import org.security.basics.repository.HappyUserRepository
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.scheduling.annotation.EnableAsync
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.factory.PasswordEncoderFactories
@@ -18,6 +19,7 @@ import javax.sql.DataSource
 
 
 @Configuration
+@EnableAsync
 class UserConfig {
 
     @Bean
@@ -57,7 +59,7 @@ class UserConfig {
 
     @Bean
     fun encoder(): PasswordEncoder {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
+        return BCryptPasswordEncoder()
     }
 
 }
