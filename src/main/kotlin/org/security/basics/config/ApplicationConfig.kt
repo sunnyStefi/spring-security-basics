@@ -2,6 +2,7 @@ package org.security.basics.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.Customizer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.web.SecurityFilterChain
 
@@ -14,8 +15,11 @@ class ApplicationConfig {
             .authorizeHttpRequests { auth ->
                 auth.anyRequest().authenticated()
             }
-            .formLogin { form ->
-                form.defaultSuccessUrl("https://localhost:8080/hello", true) }
+//            .httpBasic { c->
+//                c.realmName("OTHER");
+//                c.authenticationEntryPoint(CustomEntryPoint);
+//            }
+        http.formLogin(Customizer.withDefaults());
         return http.build()
     }
 }
