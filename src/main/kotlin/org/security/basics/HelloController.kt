@@ -11,18 +11,26 @@ import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
 
 @RestController
-class HelloController(private val sscm : Sscm) {
+class HelloController(helloService: HelloService) {
 
-    @Async
+    //Strategy #1: one thread per request
     @GetMapping("/hello")
-    fun hello() {
+    fun hello() : String {
     val context = SecurityContextHolder.getContext()
     val authentication = context.getAuthentication()
-        "Hello ${authentication.name}!"
+        return "Hello ${authentication.name}!"
+    }
+
+    //Strategy #2: multi-thread per request
+    @GetMapping("/hello-async")
+    fun hello() : String {
+        val context = SecurityContextHolder.getContext()
+        val authentication = context.getAuthentication()
+        return "Hello ${authentication.name}!"
     }
 
     @GetMapping("/hello-task")
-    fun hi() throws Exception
+    fun helloAsync() throws Exception
     {
         createCallableTask()
         val e = Executors.newCachedThreadPool();
