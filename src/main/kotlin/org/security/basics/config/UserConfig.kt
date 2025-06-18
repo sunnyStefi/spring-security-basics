@@ -4,12 +4,12 @@ import org.security.basics.entity.HappyAuthorityEntity
 import org.security.basics.entity.HappyUserEntity
 import org.security.basics.repository.HappyAuthorityRepository
 import org.security.basics.repository.HappyUserRepository
+import org.security.basics.utilities.TimingPasswordEncoder
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.factory.PasswordEncoderFactories
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder
@@ -22,6 +22,10 @@ class UserConfig {
 
     @Bean
     fun initUsers(userRepository: HappyUserRepository, authorityRepository: HappyAuthorityRepository, encoder: PasswordEncoder): CommandLineRunner = CommandLineRunner {
+
+        userRepository.deleteAll()
+        authorityRepository.deleteAll()
+
         val roleUser = HappyAuthorityEntity(authority = "ROLE_USER")
         val roleAdmin = HappyAuthorityEntity(authority = "ROLE_ADMIN")
 
@@ -30,20 +34,13 @@ class UserConfig {
         }
 
         if (userRepository.count() == 0L) {
-            val user1 = HappyUserEntity(
+            val user = HappyUserEntity(
                 username = "giggle_panda",
                 password = encoder.encode("bamboo"),
                 authorities = mutableSetOf(roleUser),
                 enabled = true
             )
-
-            val user2 = HappyUserEntity(
-                username = "tickle_unicorn",
-                password = encoder.encode("sparkles"),
-                authorities = mutableSetOf(roleUser, roleAdmin),
-                enabled = true
-            )
-            userRepository.saveAll(listOf(user1, user2))
+            userRepository.save(user)
         }
     }
 
@@ -57,7 +54,11 @@ class UserConfig {
 
     @Bean
     fun encoder(): PasswordEncoder {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder()
+        val encoders: MutableMap<String, PasswordEncoder> = mutableMapOf()
+        encoders["classic_encoder"] = BCryptPasswordEncoder(11)
+        encoders["flavored_encoder"] = SCryptPasswordEncoder(131072, 16, 2, 64, 32)
+        val delegatingPasswordEncoder = DelegatingPasswordEncoder("flavored_encoder", encoders)
+        return TimingPasswordEncoder(delegatingPasswordEncoder)
     }
 
 }
