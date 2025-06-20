@@ -1,30 +1,45 @@
-# spring-security-basics 
-..in progress
-# Spring Security Basics
+# 🔐 Spring Security Basics | Passwords and Cryptography
 
-This project demonstrates various Spring Security concepts and includes educational examples of security vulnerabilities.
+Welcome to the **Spring Security Basics** series!
+In this branch, we explore how to securely store and verify passwords using different hashing algorithms.
 
-## SQL Injection Simulation
+## 🎥 Youtube Video Tutorial
 
-This project includes a comprehensive demonstration of SQL injection vulnerabilities and protection mechanisms:
+[Basic 06 | PasswordEncoder](https://youtu.be/jae3-5QXyEA) by [Spring Security with Stefania](https://www.youtube.com/channel/UCD7izGaUlRDhJaOa5Y4Cc7Q?sub_confirmation=1) 🔔
 
-- **Automatic Simulation**: Runs at application startup to show SQL injection techniques
-- **Interactive Web Endpoints**: Demonstrates vulnerable and secure API endpoints
-- **User-Friendly Demo Page**: Provides a web interface for testing SQL injection
-- **Educational Documentation**: Explains SQL injection concepts and best practices
+## 🛠️ Setup
 
-### How to Access the SQL Injection Demo
+This content lives in a separate branch for modular learning:
 
-1. Start the application
-2. View the console output to see the automatic simulation results
-3. Access the interactive demo page at: `/sql-injection-demo.html`
-4. Try the example SQL injection payloads provided on the page
+```bash
+git checkout basics/07-password-encoder
+```
 
-### Documentation
+## 🧩 Key concepts
 
-For detailed information about SQL injection, see:
-- [SQL Injection Documentation](src/main/kotlin/org/security/basics/README_SQL_INJECTION.md)
+In this module (`basics/07-password-encoder`), we explore password hashing, salting, adaptive algorithms, and Spring Security's `PasswordEncoder` options like BCrypt, SCrypt, and Argon2.
 
-## Warning
+## 🏗️ Code Overview
 
-The SQL injection examples in this project are for educational purposes only. Never use these techniques against systems without explicit permission.
+### 🧪 PasswordEncoder Configuration
+
+```kotlin
+@Bean
+fun encoder(): PasswordEncoder {
+   val encoders: MutableMap<String, PasswordEncoder> = mutableMapOf()
+   encoders["classic_encoder"] = BCryptPasswordEncoder(11)
+   encoders["flavored_encoder"] = SCryptPasswordEncoder(65536, 8, 1, 32, 64)
+   val delegating = DelegatingPasswordEncoder("flavored_encoder", encoders)
+   return TimingPasswordEncoder(delegating)
+}
+```
+
+## 🔍 Summary
+
+* Hashing is one-way: the original password can't be retrieved.
+* SHA-256 is outdated —use adaptive hashing like BCrypt, SCrypt, or Argon2.
+* BCrypt (default) is slow and secure: use strength factor to tune
+* SCrypt and Argon2 offer better memory and CPU resistance
+* DelegatingPasswordEncoder supports multiple formats (e.g. `{bcrypt}`, `{scrypt}`)
+* You can decorate encoders (e.g. `TimingPasswordEncoder`) to measure performance
+* OWASP recommends password verification to take \~1 second ⏰
