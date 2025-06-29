@@ -22,10 +22,15 @@ class HelloController(val service: HelloService) {
     }
 
     // MODE_INHERITABLETHREADLOCAL
-
     @GetMapping("/hello-async")
     fun helloAsync() {
-        return service.someWork()
+        return service.someWorkAsync()
+    }
+
+    // DelegatingSecurityContextRunnable
+    @GetMapping("/hello-delegating")
+    fun helloDelegating() {
+        return service.someWorkDelegating()
     }
 
     //Strategy #2: multi-thread per request

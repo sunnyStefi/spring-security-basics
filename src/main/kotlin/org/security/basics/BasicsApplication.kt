@@ -8,6 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder
 class BasicsApplication
 
 fun main(args: Array<String>) {
-    SecurityContextHolder.setStrategyName("MODE_INHERITABLETHREADLOCAL")
+    //SecurityContextHolder.setStrategyName("MODE_INHERITABLETHREADLOCAL")
     runApplication<BasicsApplication>(*args)
 }
