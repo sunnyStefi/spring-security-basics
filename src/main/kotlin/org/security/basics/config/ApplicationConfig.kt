@@ -15,11 +15,11 @@ class ApplicationConfig {
             .authorizeHttpRequests { auth ->
                 auth.anyRequest().authenticated()
             }
-//            .httpBasic { c->
-//                c.realmName("OTHER");
-//                c.authenticationEntryPoint(CustomEntryPoint);
-//            }
-        http.formLogin(Customizer.withDefaults());
+            .httpBasic { c ->
+                c.authenticationEntryPoint(CustomEntryPoint())
+            }
+            .formLogin { c -> c.successHandler(CustomSuccessHandler())
+            }
         return http.build()
     }
 }

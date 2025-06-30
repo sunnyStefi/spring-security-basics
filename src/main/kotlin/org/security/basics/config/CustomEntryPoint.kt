@@ -11,8 +11,7 @@ class CustomEntryPoint : AuthenticationEntryPoint {
         request: HttpServletRequest?,
         response: HttpServletResponse?,
         authException: org.springframework.security.core.AuthenticationException?
-    ) {
+    ) { response?.setHeader("Failed login", "Oops")
        response?.sendError(HttpStatus.UNAUTHORIZED.value())
-       response?.addHeader("Failed login", "You shall not pass")
     }
 }
