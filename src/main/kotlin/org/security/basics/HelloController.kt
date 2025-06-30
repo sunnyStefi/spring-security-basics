@@ -33,43 +33,9 @@ class HelloController(val service: HelloService) {
         return service.someWorkDelegating()
     }
 
-    //Strategy #2: multi-thread per request
-//    @GetMapping("/hello-async")
-//    fun hello() : String {
-//        val context = SecurityContextHolder.getContext()
-//        val authentication = context.getAuthentication()
-//        return "Hello ${authentication.name}!"
-//    }
-//
-//    @GetMapping("/hello-task")
-//    fun helloAsync() throws Exception
-//    {
-//        createCallableTask()
-//        val e = Executors.newCachedThreadPool();
-//        try {
-//            var contextTask = new DelegatingSecurityContextCallable < > (task);
-//            return "Ciao, " + e.submit(contextTask).get() + "!";
-//        } finally {
-//            e.shutdown();
-//        }
-//    }
-//
-//    “@GetMapping("/hello-thread-pool")
-//    public String hola() throws Exception {
-//        createCallableTask()
-//        ExecutorService e = Executors.newCachedThreadPool();
-//        e =  DelegatingSecurityContextExecutorService(e);
-//        try {
-//            return "Hola, " + e.submit(task).get() + "!";
-//        } finally {
-//            e.shutdown();
-//        }
-//    }
-//
-//    private fun createCallableTask : String {
-//        return Callable: String () -> {
-//            SecurityContext context = SecurityContextHolder.getContext();
-//            return context.getAuthentication().getName();
-//        };
-//    }
+    // DelegatingSecurityContextRunnable
+    @GetMapping("/hello-delegating-service")
+    fun helloDelegatingExecutorService() {
+        return service.someWorkDelegatingExecutorService()
+    }
 }
