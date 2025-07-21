@@ -1,4 +1,4 @@
-package org.security.basics
+package org.security.basics.controller
 
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.GetMapping
